@@ -1,0 +1,9 @@
+*.class
+
+adaboost-smo-classifier.model
+labelled-data.arff
+string-to-word-vector-filter.model
+training-set-filtered.arff
+
+out/
+.idea/
