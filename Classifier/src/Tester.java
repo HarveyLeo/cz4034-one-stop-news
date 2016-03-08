@@ -23,7 +23,7 @@ public class Tester {
 
 //        StringToWordVectorFilter.filter("files/training-set.arff", 0);
 //        AdaBoostM1 cls = BoostClassifier.classifyBySMOBoosting("files/training-set-filtered.arff", 0);
-//        ClassPredictor.predict("files/unlabelled-data.arff", "files/adaboost-smo-classifier.model", "files/string-to-word-vector-filter.model");
+        ClassPredictor.predict("files/unlabelled-data.arff", "files/adaboost-smo-classifier.model", "files/string-to-word-vector-filter.model");
 
     }
 }
