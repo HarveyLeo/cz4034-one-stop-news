@@ -1,0 +1,3 @@
+[submodule "cz4034-solr"]
+	path = cz4034-solr 
+	url = https://github.com/kenrick95/cz4034-solr 
