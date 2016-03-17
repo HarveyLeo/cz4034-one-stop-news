@@ -74,33 +74,53 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if(isset($_POST['data'])){
+            $data = json_decode($_POST['data'], true);
+            $processing_to_provider = array();
+            $query_form = new QueryForm();
+
+            foreach($data as $datum){
+
+                $temp_data['message'] = $datum['message'];
+                $temp_data['source'] = $datum['source'];
+                $processing_to_provider[] = $temp_data;
+            }
+
+            $data_provider = new ArrayDataProvider([
+                'allModels' => $processing_to_provider,
+                'pagination' => [
+                    'pageSize' => sizeof($processing_to_provider),
+                ],
+            ]);
+            return $this->render('index', ['has_data' => true, 'data_provider' => $data_provider, 'query_form' => $query_form]);
+        }
+        else{
+            $query_form = new QueryForm();
+            return $this->render('index', ['query_form' => $query_form]);
+
+        }
+    }
+
+    public function actionProcess(){
+        $data = json_decode($_POST['data'], true);
+        $processing_to_provider = array();
         $query_form = new QueryForm();
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
 
-        $list_dataprovider[] =  ["POST" => "ADKJLKASD;FSJFKFL;DKS;DFKS;KFS;"];
+        foreach($data as $datum){
 
-        $list_data_provider = new ArrayDataProvider([
-           'allModels' => $list_dataprovider,
+            $temp_data['message'] = $datum['message'];
+
+            $processing_to_provider[] = $temp_data;
+        }
+
+        $data_provider = new ArrayDataProvider([
+            'allModels' => $processing_to_provider,
             'pagination' => [
                 'pageSize' => 5,
             ],
-
         ]);
-        return $this->render('index', ['query_form' => $query_form, 'list_data_provider' => $list_data_provider]);
+        return $this->render('index', ['has_data' => true, 'data_provider' => $data_provider, 'query_form' => $query_form]);
     }
-
     /**
      * Logs in a user.
      *

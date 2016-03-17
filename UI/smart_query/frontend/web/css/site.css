@@ -3,6 +3,19 @@ body {
     height: 100%;
 }
 
+.mynavbar{
+    background-color: white;
+}
+
+.mynav{
+    padding-right:10px;
+    margin-top:5px;
+    width: 450px;
+}
+
+.item{
+    width: 100%;
+}
 .wrap {
     min-height: 100%;
     height: auto;

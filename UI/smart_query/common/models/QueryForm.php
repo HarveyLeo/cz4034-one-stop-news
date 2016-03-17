@@ -11,7 +11,7 @@ class QueryForm extends Model
 {
     public $category;
 
-    public $sentiment_analysis;
+    public $sort;
 
     /**
      * @inheritdoc

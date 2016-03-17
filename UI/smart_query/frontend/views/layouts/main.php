@@ -9,7 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
-
+use kartik\select2\Select2;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -23,39 +23,36 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php
+
+$this->beginBody() ?>
 
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Smart Query',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-fixed-top mynavbar',
         ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
+    ]) ?>
+
+    <div class="collapse navbar-collapse">
+
+        <ul class="nav navbar-nav mynav">
+              <li class="item">
+                  <?=  Html::textInput(
+                       'search_box_menu',
+                        null,
+                        ['placeholder' => 'Search', 'class' => 'form-control','id' => 'search_box']
+
+                    )
+                 ?>
+           </li>
+        </ul>
+        <?= Html::button('Search' , ['class' => 'btn btn-primary', 'style' => 'margin-top:5px', 'id' => 'query_button']) ?>
+    </div>
+<?php
     NavBar::end();
     ?>
 
@@ -75,6 +72,9 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
+<?php
+$this->registerJsFile(Yii::$app->request->baseUrl . '/frontend/web/js/jquery.js');
+$this->registerJsFile(Yii::$app->request->baseUrl . '/frontend/web/js/script.js') ?>
 
 <?php $this->endBody() ?>
 </body>
