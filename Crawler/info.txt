@@ -1,0 +1,6 @@
+Strait Times : id: 129011692114 Earliest : 2 Sept 2009, 1133 posts
+BBC News : 
+	id : 228735667216, 6029 posts
+Reuters : id: 114050161948682 , 3837 posts
+Guardian : id: 10513336322, 593 posts
+CNN : id: 5550296508, 656 posts
