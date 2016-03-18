@@ -16,3 +16,4 @@ In this assignment, we <br />
 - Paging:
   - Page 1, 10 results: `start=0&rows=10` http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3Aobama&start=0&rows=10&wt=json&indent=true
   - Page 2, 10 more results: `start=1&rows=10` http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3Aobama&start=1&rows=10&wt=json&indent=true
+- Query at `attachment_name` too: `message:Bhutan OR attachment_name:Bhutan` http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3ABhutan+OR+attachment_name%3ABhutan&start=0&rows=10&wt=json&indent=true
