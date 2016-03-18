@@ -13,3 +13,6 @@ In this assignment, we <br />
 - Sort by popularity `sort=like_count desc`. Example: http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3AObama&sort=like_count+desc&wt=json&indent=true
 - Default sort is by relevance
 - Spell check: `/spell?q=message:Obame` http://solr.kenrick95.xyz/solr/cz4034/spell?q=message%3AObame&rows=0&wt=json&indent=true
+- Paging:
+  - Page 1, 10 results: `start=0&rows=10` http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3Aobama&start=0&rows=10&wt=json&indent=true
+  - Page 2, 10 more results: `start=1&rows=10` http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3Aobama&start=1&rows=10&wt=json&indent=true
