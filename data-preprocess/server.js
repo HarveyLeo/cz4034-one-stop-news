@@ -117,24 +117,23 @@ app.get('/post', function (req, res) {
     
     var text = fs.readFileSync("data-stemmed.json", "utf8");
     request.post(
-        'http://solr.kenrick95.xyz/solr/cz4034/update',
+        'http://192.168.109.2/solr/cz4034/update?commit=true&commitWithin=1000&wt=json',
         {
-            form:
-            {
-                stream: {
-                    contentType: 'application/json',
-                    body: text
-                },
-                wt: "json",
-                commit: "true",
-                commitWithin: 1000
-            }
+            json: JSON.parse(text)
         },
         function (error, response, body) {
+            response.setEncoding('utf-8');
+
+            // console.log("**** error: ");
+            console.log("**** response: ");
+            console.log(response);
+            console.log("**** body: ");
+            console.log(body);
             if (!error && response.statusCode == 200) {
                 res.send(body);
             } else {
-                res.send(error);
+                console.log(error);
+                res.send(body);
             }
         }
     );

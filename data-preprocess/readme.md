@@ -1,7 +1,7 @@
 # Preprocess
 
 ## Posting file
-`POST localhost:3000/file`
+`POST http://solr.kenrick95.xyz:3000/file`
 
 Fields:
 - `text`: file content, should be in valid JSON
@@ -15,7 +15,7 @@ Fields:
 Then, `filename.json` will be saved in the server.
 
 ## Parsing
-`GET localhost:3000/parse`
+`GET http://solr.kenrick95.xyz:3000/parse`
 
 - Parse data from:
     + `bbc-updated.json`
@@ -24,3 +24,9 @@ Then, `filename.json` will be saved in the server.
     + `reuters-updated.json`
     + `straits-times-updated.json`
 - And then `data-stemmed.json` will be generated. Hopefully, no error will be seen.
+
+## Posting to Solr
+`GET http://solr.kenrick95.xyz:3000/post`
+
+- Wait for it!
+- Done~
