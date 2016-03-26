@@ -4,3 +4,6 @@
 [submodule "Classifier"]
 	path = Classifier
 	url = https://github.com/HarveyLeo/Classifier.git
+[submodule "smart_query"]
+	path = smart_query
+	url = https://github.com/robert589/smart_query.git
