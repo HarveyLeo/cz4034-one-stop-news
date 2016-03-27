@@ -20,3 +20,4 @@ In this assignment, we <br />
 ### Notes 2:
 - Query at `attachment_name` and `attachment_description` too: `message:Bhutan OR attachment_name:Bhutan OR attachment_description:Bhutan` http://solr.kenrick95.xyz/solr/cz4034/select?q=message%3ABhutan+OR+attachment_name%3ABhutan&start=0&rows=10&wt=json&indent=true
 - Suggestor: `/suggest?suggest.q=Obam`. Example: http://solr.kenrick95.xyz/solr/cz4034/suggest?wt=json&indent=true&suggest.q=Obam
+- Increase `click_count`, replace the `post_id` enclosed with %22. http://solr.kenrick95.xyz/solr/cz4034/update?stream.body=[{%22post_id%22:%22228735667216_10153316975397217%22,%22click_count%22:{%22inc%22:1}}]&commit=true
