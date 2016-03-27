@@ -1,5 +1,5 @@
 <?php
-include "access.php";
+
 $news= $_POST["news"];
 $tail="&access_token=".$_POST["accesscode"];
 $filename = $news.".txt";
@@ -18,7 +18,7 @@ fclose($time);
 	fclose($file);
 
 //Determine Source id
-	if ($news=="straittimes")
+	if ($news=="straits-times")
 	{
 		$source = 129011692114;
 	}
@@ -59,7 +59,7 @@ fclose($time);
 
 	
 	$revised = json_encode($json_output);
-
+/*
 
 	$file = fopen($name,"w");
 	if (strlen($text)>1)
@@ -73,6 +73,23 @@ fclose($time);
 	$finalwrite = $revised.",".$text;
 
 	echo fwrite($file,$finalwrite);
+*/
+	$url = 'http://solr.kenrick95.xyz:82/classify';
+	$data = array('text' => $news, 'filename' => $revised);
+
+	// use key 'http' even if you send the request to https://...
+	$options = array(
+		'http' => array(
+		//	'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			'method'  => 'POST',
+			'content' => http_build_query($data)
+		)
+	);
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+	if ($result === FALSE) { /* Handle error */ }
+
+	var_dump($result);
 	echo '<script type="text/javascript">alert("' . $max ."entries has been added to ". $news ." database" . '");
 	window.location.href=\'crawl.html\';
 	
