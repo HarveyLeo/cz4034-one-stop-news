@@ -4,8 +4,9 @@ var fs = require('fs');
 var stemmer = require('stemmer');
 var request = require('request');
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+
 
 app.post('/file', function (req, res) {
     var filename = req.body.filename,
@@ -20,7 +21,7 @@ app.post('/file', function (req, res) {
         res.send("Not OK");
     } else {
         fs.writeFile(newPath, text, function (err) {
-            res.send("OK");
+            res.send(err);
         });
     }
     
