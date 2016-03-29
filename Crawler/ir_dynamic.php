@@ -75,12 +75,11 @@ fclose($time);
 	echo fwrite($file,$finalwrite);
 */
 	$url = 'http://solr.kenrick95.xyz:82/classify';
-	$data = array('text' => $news, 'filename' => $revised);
+	$data = array('text' => $revised, 'filename' => $news);
 
 	// use key 'http' even if you send the request to https://...
 	$options = array(
 		'http' => array(
-		//	'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 			'method'  => 'POST',
 			'content' => http_build_query($data)
 		)
