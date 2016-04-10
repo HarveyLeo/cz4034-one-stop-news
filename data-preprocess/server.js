@@ -18,9 +18,11 @@ app.post('/file', function (req, res) {
         'guardian-updated',
         'reuters-updated',
         'straits-times-updated'].indexOf(filename) === -1) {
+        console.log(req);
         res.send("Not OK");
     } else {
         fs.writeFile(newPath, text, function (err) {
+            console.log(err);
             res.send(err);
         });
     }
@@ -92,7 +94,7 @@ app.get('/parse', function (req, res) {
 
     for (var src of ['bbc-updated.json', 'cnn-updated.json', 'guardian-updated.json', 'reuters-updated.json', 'straits-times-updated.json']) {
         var data = fs.readFileSync(src, "utf8");
-        data = JSON.parse(data);
+        data = JSON.parse(data.toString('utf8').replace(/^\uFEFF/, ''));
         data = cleanData(data);
 
         if (finalData === null) {
